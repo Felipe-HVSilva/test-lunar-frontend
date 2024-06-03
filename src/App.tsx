@@ -14,11 +14,23 @@ function App() {
   const [products, setProducts] = useState<Product[]>([]);
   const [productsList, setProductsList] = useState<Product[]>([]);
 
-  function searchProduct(name: string) {
+  function handleSearchProductByName(name: string) {
     const product = products.filter((product) =>
       product.name.toLocaleLowerCase().includes(name.toLocaleLowerCase())
     );
     setProductsList(product);
+  }
+
+  function handleSearchProductByPrice(price: string) {
+    if (price === "") {
+      setProductsList(products);
+    } else {
+      const [min, max] = price.split("-").map(Number);
+      const filtrados = products.filter(
+        (produto) => produto.price >= min && produto.price <= max
+      );
+      setProductsList(filtrados);
+    }
   }
 
   async function LoadProduct() {
@@ -48,14 +60,23 @@ function App() {
                 type="text"
                 placeholder="Nome"
                 className="bg-inherit focus:outline-none"
-                onChange={(event) => searchProduct(event.target.value)}
+                onChange={(event) =>
+                  handleSearchProductByName(event.target.value)
+                }
               />
               <Search size={21} />
             </div>
 
-            <select className="px-2 py-3 rounded-lg">
-              <option value="50">R$ 0 - R$ 50</option>
-              <option value="100">R$ 51,00 - R$ 100,00</option>
+            <select
+              className="px-2 py-3 rounded-lg"
+              onChange={(event) =>
+                handleSearchProductByPrice(event.target.value)
+              }
+            >
+              <option value=""></option>
+              <option value="1000-6000">R$ 1.000,00 - R$ 6.000,00</option>
+              <option value="6001-10000">R$ 6.000,1 - R$ 10.000,00</option>
+              <option value="1001-200">R$ 101,00 - R$ 200,00</option>
             </select>
           </div>
 
