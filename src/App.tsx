@@ -3,8 +3,23 @@ import Header from "./_components/Header";
 import ProductItem from "./_components/ProductItem";
 import { useEffect, useState } from "react";
 
+interface Product {
+  name: string;
+  price: number;
+  description: string;
+  photo: string;
+}
+
 function App() {
-  const [products, setProducts] = useState<[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [productsList, setProductsList] = useState<Product[]>([]);
+
+  function searchProduct(name: string) {
+    const product = products.filter((product) =>
+      product.name.toLocaleLowerCase().includes(name.toLocaleLowerCase())
+    );
+    setProductsList(product);
+  }
 
   async function LoadProduct() {
     const response = await fetch(
@@ -15,6 +30,7 @@ function App() {
     console.log(data);
 
     setProducts(data.products);
+    setProductsList(data.products);
   }
 
   useEffect(() => {
@@ -32,6 +48,7 @@ function App() {
                 type="text"
                 placeholder="Nome"
                 className="bg-inherit focus:outline-none"
+                onChange={(event) => searchProduct(event.target.value)}
               />
               <Search size={21} />
             </div>
@@ -43,7 +60,7 @@ function App() {
           </div>
 
           <div className="grid grid-cols-4 grid-rows-2 gap-x-5 gap-y-7 max-md:grid-cols-1 place-items-center ">
-            {products.map((product) => (
+            {productsList.map((product) => (
               <ProductItem product={product} />
             ))}
           </div>
