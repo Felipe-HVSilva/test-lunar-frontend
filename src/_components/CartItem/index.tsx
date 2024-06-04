@@ -23,7 +23,7 @@ const CartItem = ({ cart }: CartItem) => {
   return (
     <div className="bg-white rounded-lg flex flex-row items-center justify-between px-2 py-1 mt-8">
       <div className="flex gap-3 items-center">
-        <div className="max-w-[100px] max-h-[115px] m-auto">
+        <div className="max-w-[100px] max-h-[115px] m-auto max-sm:max-w-[50px]">
           <img src={cart.photo} alt="" />
         </div>
 

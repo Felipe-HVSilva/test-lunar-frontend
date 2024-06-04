@@ -44,7 +44,7 @@ export function Product() {
   return (
     <div className="h-auto relative overflow-hidden">
       <Header />
-      <main className="flex h-auto m-auto justify-center flex-col max-w-4xl pb-5">
+      <main className="flex h-auto m-auto justify-center flex-col max-w-4xl pb-5 px-2">
         <img src={productSelected.photo} alt="" className="w-[500px] m-auto" />
 
         <div className="flex  justify-between items-center max-w-md m-auto w-full">

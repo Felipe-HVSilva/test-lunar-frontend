@@ -23,7 +23,7 @@ const ProductItem = ({ product }: ProductProps) => {
   return (
     <Link
       to={`product/${product.name}`}
-      className="max-w-[300px] max-h-[285px] rounded bg-white flex flex-col "
+      className="max-w-[300px] min-h-[285px] rounded bg-white flex flex-col "
     >
       <div className="max-w-[100px] max-h-[115px] m-auto">
         <img src={product.photo} alt="" />
@@ -31,7 +31,7 @@ const ProductItem = ({ product }: ProductProps) => {
 
       <div className="flex flex-col px-3 mt-2">
         <div className="flex items-center justify-between">
-          <h3 className="font-medium max-w-28">{product.name}</h3>
+          <h3 className="font-medium max-w-28 line-clamp-1">{product.name}</h3>
           <span className="bg-black text-white font-bold px-1 py-2 rounded">
             {Intl.NumberFormat("pt-br", {
               style: "currency",

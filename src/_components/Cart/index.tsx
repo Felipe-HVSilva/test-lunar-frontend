@@ -22,7 +22,7 @@ const Cart = () => {
   }
   return (
     <div className="bg-black/70 w-screen h-screen absolute top-0 overflow-hidden">
-      <main className="bg-violet-600 w-[500px] ml-auto z-10 px-3 py-4 h-full overflow-hidden flex flex-col justify-between">
+      <main className="bg-violet-600 max-w-[500px] ml-auto z-10 px-3 py-4 h-full overflow-hidden flex flex-col justify-between">
         <div>
           <div className="flex justify-between">
             <h3 className="text-white font-bold text-2xl">Carrinho</h3>

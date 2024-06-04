@@ -44,7 +44,7 @@ export function Home() {
     <div className="h-screen relative overflow-hidden">
       <Header />
       <div className="bg-slate-50 w-full h-full flex py-5 px-5 items-start justify-center">
-        <main className="max-w-5xl w-full">
+        <main className="max-w-6xl w-full">
           <div className=" flex justify-between gap-3 mb-7 max-sm:flex-col">
             <div className="flex items-center justify-between rounded-lg bg-white px-2 py-3">
               <input
