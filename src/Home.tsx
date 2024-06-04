@@ -1,6 +1,7 @@
 import { Search } from "lucide-react";
 import ProductItem from "./_components/ProductItem";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { ProductContext } from "./_contexts/productContext";
 
 interface Product {
   name: string;
@@ -9,8 +10,9 @@ interface Product {
   photo: string;
 }
 
-function Home() {
-  const [products, setProducts] = useState<Product[]>([]);
+export function Home() {
+  const { products } = useContext(ProductContext);
+
   const [productsList, setProductsList] = useState<Product[]>([]);
 
   function handleSearchProductByName(name: string) {
@@ -32,21 +34,9 @@ function Home() {
     }
   }
 
-  async function LoadProduct() {
-    const response = await fetch(
-      "https://mks-frontend-challenge-04811e8151e6.herokuapp.com/api/v1/products?page=1&rows=10&sortBy=id&orderBy=DESC"
-    );
-
-    const data = await response.json();
-    console.log(data);
-
-    setProducts(data.products);
-    setProductsList(data.products);
-  }
-
   useEffect(() => {
-    LoadProduct();
-  }, []);
+    setProductsList(products);
+  }, [products]);
 
   return (
     <div className="h-screen relative overflow-hidden">
@@ -87,5 +77,3 @@ function Home() {
     </div>
   );
 }
-
-export default Home;
