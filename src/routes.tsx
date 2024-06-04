@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Product } from "./product";
+import { Product } from "./Product";
 import Home from "./Home";
 
 const AppRoutes = () => {
