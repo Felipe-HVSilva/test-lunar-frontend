@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { CartContext } from "../../_contexts/cartContext";
+import { Link } from "react-router-dom";
 
 interface ProductProps {
   product: {
@@ -20,7 +21,10 @@ const ProductItem = ({ product }: ProductProps) => {
   }
 
   return (
-    <div className="max-w-[300px] max-h-[285px] rounded bg-white flex flex-col ">
+    <Link
+      to={`product/${product.name}`}
+      className="max-w-[300px] max-h-[285px] rounded bg-white flex flex-col "
+    >
       <div className="max-w-[100px] max-h-[115px] m-auto">
         <img src={product.photo} alt="" />
       </div>
@@ -49,7 +53,7 @@ const ProductItem = ({ product }: ProductProps) => {
       >
         Adicionar
       </button>
-    </div>
+    </Link>
   );
 };
 
