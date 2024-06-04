@@ -21,7 +21,7 @@ const Cart = () => {
     return;
   }
   return (
-    <div className="bg-black/70 w-screen h-screen absolute top-0 overflow-x-auto">
+    <div className="bg-black/70 w-screen h-screen absolute top-0 overflow-hidden">
       <main className="bg-violet-600 w-[500px] ml-auto z-10 px-3 py-4 h-full overflow-hidden flex flex-col justify-between">
         <div>
           <div className="flex justify-between">

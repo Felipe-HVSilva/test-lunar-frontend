@@ -2,6 +2,8 @@ import { Search } from "lucide-react";
 import ProductItem from "./_components/ProductItem";
 import { useContext, useEffect, useState } from "react";
 import { ProductContext } from "./_contexts/productContext";
+import Cart from "./_components/Cart";
+import Header from "./_components/Header";
 
 interface Product {
   name: string;
@@ -40,6 +42,7 @@ export function Home() {
 
   return (
     <div className="h-screen relative overflow-hidden">
+      <Header />
       <div className="bg-slate-50 w-full h-full flex py-5 px-5 items-start justify-center">
         <main className="max-w-5xl w-full">
           <div className=" flex justify-between gap-3 mb-7 max-sm:flex-col">
@@ -74,6 +77,7 @@ export function Home() {
           </div>
         </main>
       </div>
+      <Cart />
     </div>
   );
 }
