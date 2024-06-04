@@ -1,5 +1,8 @@
 import { X } from "lucide-react";
 import CartItem from "../CartItem";
+import { useContext, useMemo } from "react";
+import { CartContext } from "../../_contexts/cartContext";
+import { priceFormat } from "../../_utils/priceFormat";
 
 interface CartProps {
   isCartOpen: boolean;
@@ -7,12 +10,20 @@ interface CartProps {
 }
 
 const Cart = ({ isCartOpen, onCartClose }: CartProps) => {
+  const { cart } = useContext(CartContext);
+
+  const totalPrice = useMemo(() => {
+    return cart.reduce((acc, item) => {
+      return acc + item.price * item.quantity;
+    }, 0);
+  }, [cart]);
+
   if (!isCartOpen) {
     return;
   }
   return (
     <div className="bg-black/70 w-screen h-screen absolute top-0 overflow-x-auto">
-      <main className="bg-violet-600 w-[468px] ml-auto z-10 px-3 py-4 h-full overflow-hidden flex flex-col justify-between">
+      <main className="bg-violet-600 w-[500px] ml-auto z-10 px-3 py-4 h-full overflow-hidden flex flex-col justify-between">
         <div>
           <div className="flex justify-between">
             <h3 className="text-white font-bold text-2xl">Carrinho</h3>
@@ -21,13 +32,18 @@ const Cart = ({ isCartOpen, onCartClose }: CartProps) => {
             </button>
           </div>
 
-          <CartItem />
+          {cart.map((cart) => (
+            <CartItem key={cart.name} cart={cart} />
+          ))}
         </div>
 
         <div>
           <div>
             <h3 className="font-bold text-white text-4xl">
-              Total: <span className="text-2xl">R$ 300</span>
+              Total:{" "}
+              <span className="text-2xl">
+                {priceFormat(Number(totalPrice))}
+              </span>
             </h3>
           </div>
           <button className="w-full px-3 py-3 bg-black font-bold text-xl text-white rounded-md mt-4">
