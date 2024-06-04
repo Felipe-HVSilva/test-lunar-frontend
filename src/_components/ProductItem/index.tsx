@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import { CartContext } from "../../_contexts/cartContext";
+
 interface ProductProps {
   product: {
     name: string;
@@ -8,6 +11,14 @@ interface ProductProps {
 }
 
 const ProductItem = ({ product }: ProductProps) => {
+  const { addItemIntoCart } = useContext(CartContext);
+
+  function handleAddProduct() {
+    const productItem = { ...product, quantity: 1 };
+
+    addItemIntoCart(productItem);
+  }
+
   return (
     <div className="max-w-[300px] max-h-[285px] rounded bg-white flex flex-col ">
       <div className="max-w-[100px] max-h-[115px] m-auto">
@@ -32,7 +43,10 @@ const ProductItem = ({ product }: ProductProps) => {
         </div>
       </div>
 
-      <button className="bg-purple-700 py-1 w-full rounded-b text-white mt-2">
+      <button
+        className="bg-purple-700 py-1 w-full rounded-b text-white mt-2"
+        onClick={handleAddProduct}
+      >
         Adicionar
       </button>
     </div>

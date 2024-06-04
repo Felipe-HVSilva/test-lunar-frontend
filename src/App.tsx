@@ -86,7 +86,6 @@ function App() {
               <option value=""></option>
               <option value="1000-6000">R$ 1.000,00 - R$ 6.000,00</option>
               <option value="6001-10000">R$ 6.000,1 - R$ 10.000,00</option>
-              <option value="1001-200">R$ 101,00 - R$ 200,00</option>
             </select>
           </div>
 
