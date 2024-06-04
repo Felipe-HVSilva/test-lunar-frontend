@@ -2,6 +2,7 @@ import { Search } from "lucide-react";
 import Header from "./_components/Header";
 import ProductItem from "./_components/ProductItem";
 import { useEffect, useState } from "react";
+import Cart from "./_components/Cart";
 
 interface Product {
   name: string;
@@ -13,6 +14,15 @@ interface Product {
 function App() {
   const [products, setProducts] = useState<Product[]>([]);
   const [productsList, setProductsList] = useState<Product[]>([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  function handleCartOpen() {
+    setIsCartOpen(true);
+  }
+
+  function handleCartClose() {
+    setIsCartOpen(false);
+  }
 
   function handleSearchProductByName(name: string) {
     const product = products.filter((product) =>
@@ -50,8 +60,8 @@ function App() {
   }, []);
 
   return (
-    <div className="h-screen">
-      <Header />
+    <div className="h-screen relative overflow-hidden">
+      <Header onOpenCart={handleCartOpen} />
       <div className="bg-slate-50 w-full h-full flex py-5 px-5 items-start justify-center">
         <main className="max-w-5xl w-full">
           <div className=" flex justify-between gap-3 mb-7 max-sm:flex-col">
@@ -87,6 +97,7 @@ function App() {
           </div>
         </main>
       </div>
+      <Cart isCartOpen={isCartOpen} onCartClose={handleCartClose} />
     </div>
   );
 }

@@ -1,6 +1,10 @@
 import { ShoppingCart } from "lucide-react";
 
-const Header = () => {
+interface HeaderProps {
+  onOpenCart: () => void;
+}
+
+const Header = ({ onOpenCart }: HeaderProps) => {
   return (
     <header className="w-full bg-violet-500 flex justify-center py-7 px-5">
       <div className="w-full max-w-6xl flex justify-between items-center">
@@ -11,6 +15,7 @@ const Header = () => {
         <button
           className="bg-slate-200 flex flex-row items-center gap-3 rounded py-1
          px-3 max-sm:px-2"
+          onClick={onOpenCart}
         >
           <ShoppingCart />
           <span className="font-semibold text-lg sm: text-base">0</span>
