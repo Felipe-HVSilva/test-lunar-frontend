@@ -4,19 +4,18 @@ import { useContext, useMemo } from "react";
 import { CartContext } from "../../_contexts/cartContext";
 import { priceFormat } from "../../_utils/priceFormat";
 
-interface CartProps {
-  isCartOpen: boolean;
-  onCartClose: () => void;
-}
-
-const Cart = ({ isCartOpen, onCartClose }: CartProps) => {
-  const { cart } = useContext(CartContext);
+const Cart = () => {
+  const { cart, isCartOpen, cartClose } = useContext(CartContext);
 
   const totalPrice = useMemo(() => {
     return cart.reduce((acc, item) => {
       return acc + item.price * item.quantity;
     }, 0);
   }, [cart]);
+
+  function handleCartClose() {
+    cartClose();
+  }
 
   if (!isCartOpen) {
     return;
@@ -27,7 +26,7 @@ const Cart = ({ isCartOpen, onCartClose }: CartProps) => {
         <div>
           <div className="flex justify-between">
             <h3 className="text-white font-bold text-2xl">Carrinho</h3>
-            <button onClick={onCartClose}>
+            <button onClick={handleCartClose}>
               <X className="text-white" />
             </button>
           </div>

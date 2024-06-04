@@ -13,12 +13,23 @@ interface CartContext {
   deleteCartItem: (cartItemName: string) => void;
   increaseQuantity: (name: string) => void;
   decreaseQuantity: (name: string) => void;
+  isCartOpen: boolean;
+  cartClose: () => void;
+  cartOpen: () => void;
 }
 
 export const CartContext = createContext({} as CartContext);
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [cart, setCart] = useState<CartProps[]>([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  function cartClose() {
+    setIsCartOpen(false);
+  }
+  function cartOpen() {
+    setIsCartOpen(true);
+  }
 
   function addItemIntoCart(item: CartProps) {
     setCart((prev) => {
@@ -65,10 +76,13 @@ export function CartProvider({ children }: { children: ReactNode }) {
     <CartContext.Provider
       value={{
         cart,
+        isCartOpen,
         addItemIntoCart,
         deleteCartItem,
         increaseQuantity,
         decreaseQuantity,
+        cartClose,
+        cartOpen,
       }}
     >
       {children}

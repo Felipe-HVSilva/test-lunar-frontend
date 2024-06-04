@@ -2,12 +2,12 @@ import { ShoppingCart } from "lucide-react";
 import { useContext } from "react";
 import { CartContext } from "../../_contexts/cartContext";
 
-interface HeaderProps {
-  onOpenCart: () => void;
-}
+const Header = () => {
+  const { cart, cartOpen } = useContext(CartContext);
 
-const Header = ({ onOpenCart }: HeaderProps) => {
-  const { cart } = useContext(CartContext);
+  function handleCartOpen() {
+    cartOpen();
+  }
 
   return (
     <header className="w-full bg-violet-500 flex justify-center py-7 px-5">
@@ -19,7 +19,7 @@ const Header = ({ onOpenCart }: HeaderProps) => {
         <button
           className="bg-slate-200 flex flex-row items-center gap-3 rounded py-1
          px-3 max-sm:px-2"
-          onClick={onOpenCart}
+          onClick={handleCartOpen}
         >
           <ShoppingCart />
           <span className="font-semibold text-lg sm: text-base">
